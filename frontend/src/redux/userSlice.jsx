@@ -7,7 +7,7 @@ const userSlice = createSlice({
     initialState,
     reducers : {
         addUser : (state, action) =>{
-            localStorage.getItem('user', JSON.stringify(action.payload))
+            localStorage.setItem('user', JSON.stringify(action.payload))
             return action.payload
         },
         removeUser: () =>{

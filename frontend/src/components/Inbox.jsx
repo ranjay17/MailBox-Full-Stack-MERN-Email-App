@@ -9,11 +9,14 @@ const Inbox = () => {
   const dispatch = useDispatch();
   const fetchEmail = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/mail/inbox", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      const response = await axios.get(
+        "https://mailbox-full-stack-mern-email-app.onrender.com/mail/inbox",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         },
-      });
+      );
       dispatch(setInbox(response.data));
       console.log(response);
     } catch (error) {
@@ -23,11 +26,15 @@ const Inbox = () => {
 
   const handleMarkedAsRead = async (id) => {
     try {
-      await axios.put(`http://localhost:8000/mail/read/${id}`, {},{
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      await axios.put(
+        `https://mailbox-full-stack-mern-email-app.onrender.com/mail/read/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         },
-      });
+      );
       fetchEmail();
     } catch (error) {
       console.log(error);
@@ -36,11 +43,14 @@ const Inbox = () => {
 
   const handleDelete = async(id) =>{
     try {
-      await axios.delete(`http://localhost:8000/mail/${id}`,{
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+      await axios.delete(
+        `https://mailbox-full-stack-mern-email-app.onrender.com/mail/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      );
       const updatedList = inbox.filter((m)=>m._id != id);
       dispatch(setInbox(updatedList))
     } catch (error) {

@@ -18,7 +18,10 @@ const Login = () => {
       return
     }
     try {
-      const response = await axios.post("http://localhost:8000/user/login", {email,password});
+      const response = await axios.post(
+        "https://mailbox-full-stack-mern-email-app.onrender.com/user/login",
+        { email, password },
+      );
       alert("Login Successfull")
       dispatch(addUser({
               id: response.data.id,

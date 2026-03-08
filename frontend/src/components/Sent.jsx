@@ -9,11 +9,14 @@ const Sent = () => {
   const dispatch = useDispatch();
   const fetchSentMail = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/mail/sent", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      const response = await axios.get(
+        "https://mailbox-full-stack-mern-email-app.onrender.com/mail/sent",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         },
-      });
+      );
       dispatch(setSent(response.data));
       console.log(response.data);
     } catch (error) {
@@ -26,11 +29,14 @@ const Sent = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/mail/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      await axios.delete(
+        `https://mailbox-full-stack-mern-email-app.onrender.com/mail/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         },
-      });
+      );
       const updatedList = sentBox.filter((m) => m._id != id);
       dispatch(setSent(updatedList));
     } catch (error) {

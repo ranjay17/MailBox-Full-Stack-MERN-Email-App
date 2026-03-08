@@ -21,9 +21,15 @@ const ComposeMail = () => {
             subject,
             body
         };
-        const response = await axios.post("http://localhost:8000/mail/compose", newMail, {
-            headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}
-        });
+        const response = await axios.post(
+          "https://mailbox-full-stack-mern-email-app.onrender.com/mail/compose",
+          newMail,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          },
+        );
         alert("Mail Send")
         dispatch(addSentMail(response.data.mail))
         navigate('/')

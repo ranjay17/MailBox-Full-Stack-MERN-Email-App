@@ -25,8 +25,8 @@ const Signup = () => {
     const newUser = { email, password, confirmPassword };
     try {
       const response = await axios.post(
-        "http://localhost:8000/user/signup",
-        newUser
+        "https://mailbox-full-stack-mern-email-app.onrender.com/user/signup",
+        newUser,
       );
       alert("User Successfully registered");
       dispatch(addUser({
@@ -34,6 +34,14 @@ const Signup = () => {
         email: response.data.email,
         token: response.data.token
       }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          id: response.data.id,
+          email: response.data.email,
+          token: response.data.token,
+        }),
+      );
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("email", response.data.email);
       navigate('/')
